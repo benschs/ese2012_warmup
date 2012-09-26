@@ -4,6 +4,7 @@ module Trading
 
     attr_accessor :name, :credit, :items
 
+    #constructor
     def self.named (name)
       user = self.new
       user.name = name
@@ -15,11 +16,14 @@ module Trading
       self.items = Array.new
     end
 
+    #defines owner of item
     def add_item (item)
       items.push(item)
       item.owner = self
+      item.ownerName = self.name
     end
 
+    #swaps credit for item with the owner of the item
     def buy_item (item)
       if item.price > credit || !item.active
         false
@@ -41,15 +45,15 @@ module Trading
       self.credit -= amount
     end
 
+    #list all items for sale
     def list_items
+      activeItems = ""
       items.each { |item| if item.active
-                           activeItems = activeItems + item.name + ", " +item.price + "\n"
+                           activeItems = activeItems + "#{item.name}, #{item.price}\n"
                          end
       }
       activeItems
     end
-
   end
-
 end
 

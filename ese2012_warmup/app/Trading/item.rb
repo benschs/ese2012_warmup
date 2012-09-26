@@ -2,7 +2,7 @@ module Trading
 
   class Item
 
-    attr_accessor :name, :price, :owner, :active
+    attr_accessor :name, :price, :owner, :active, :ownerName
 
     def self.make (name, price)
       item = self.new
@@ -13,6 +13,7 @@ module Trading
 
     def initialize
       self.owner = nil
+      self.ownerName = nil
       self.active = false
     end
 
@@ -20,7 +21,7 @@ module Trading
       status = "active"
       status = "inactive" if !self.active
 
-      "Name: #{self.name}, price: #{self.price}, status: #{status}, owner: #{self.owner}"
+      "Name: #{self.name}, price: #{self.price}, status: #{status}, owner: #{self.ownerName}"
     end
 
   end
